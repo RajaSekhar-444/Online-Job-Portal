@@ -1,0 +1,27 @@
+{% extends 'html/base.html' %}
+{% block title %}Post a Job{% endblock %}
+{% block content %}
+<div class="container-fluid mt-4">
+	<div class="row mx-2">
+		<div class="card col shadow-lg m-5 p-5 h-100">
+			<div class="card-body">
+				<h4>Post a Job</h4>
+				<form method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					{% for i in z %}
+						{{i}}
+					{% endfor %}
+					<div class="row my-2">
+						<div class="col">
+							<input type="reset" value="Clear" class="btn btn-outline-danger form-control">
+						</div>
+						<div class="col">
+							<input type="submit" value="Post Job" class="btn btn-outline-success form-control">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+    </div>
+</div>
+{% endblock %}

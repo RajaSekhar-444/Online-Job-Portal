@@ -1,0 +1,71 @@
+{% extends 'html/base.html' %}
+{% block title %}Applicant Profile{% endblock %}
+{% block content %}
+<div class="container-fluid mt-4">
+	<div class="row mx-2">
+		<div class="card col-md-2 col-sm-3 col-xm-3 shadow-lg m-2 h-100">
+			<div class="card-body text-center">
+				<img src="{{request.user.pfimg.url}}" class="rounded-circle" height="120px" width="90%">
+				<h3>{{request.user.username}}</h3>
+			</div>
+		</div>
+		<div class="card col-md col-sm col-xm shadow-lg m-2">
+			<div class="card-body">
+				<div class="row my-2">
+					<div class="col">
+						<h3>Details</h3>
+					</div>
+					<div class="col">
+						<a href="{% url 'uapf' %}" class="btn btn-outline-info float-right">Update Profile</a>
+					</div>
+				</div>
+				
+				<table class="table table-responsive">
+					<tr>
+						<td>Username</td>
+						<td>{{request.user.username}}</td>
+						<td>Unique Id</td>
+						<td>{{request.user.uid}}</td>
+					</tr>
+					<tr>
+						<td>First Name</td>
+						<td>{{request.user.first_name}}</td>
+						<td>Last Name</td>
+						<td>{{request.user.last_name}}</td>
+					</tr>
+					<tr>
+						<td>Emailid</td>
+						<td>{{request.user.email}}</td>
+						<td>Mobile Number</td>
+						<td>{{request.user.mobile}}</td>
+					</tr>
+					<tr>
+						<td>Role Type</td>
+						<td>
+                                {% if request.user.desg == "0" %}
+								<p class="badge badge-primary">General Applicant</p>
+                                {% else %}
+                                <p class="badge badge-success">Super Applicant</p>
+                                {% endif %}
+						</td>
+					</tr>
+					{% if request.user.ApProfile.astatus == 1 %}
+					<tr>
+						<td>Degree</td>
+						<td>{{request.user.ApProfile.degree}}</td>
+						<td>College Name</td>
+						<td>{{request.user.ApProfile.college}}</td>
+					</tr>
+					<tr>
+						<td>Address </td>
+						<td>{{request.user.ApProfile.address}}</td>
+						<td>Documents attached</td>
+						<td>{{request.user.ApProfile.cert}}</td>
+					</tr>
+					{% endif %}
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
